@@ -1,3 +1,4 @@
+import Navbar from './components/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -9,13 +10,16 @@ export const metadata = {
 }
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode
 }) {
   return (
     <html lang="en" className='h-screen w-full m-0'>
-      <body className={`${inter.className} bg-gradient-radial m-0 h-screen w-full`}>{children}</body>
+      <body className={`${inter.className} bg-gradient-radial m-0 h-screen w-full flex flex-col`}>
+        <Navbar/>
+        {children}
+        </body>
     </html>
   )
 }

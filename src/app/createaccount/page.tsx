@@ -3,9 +3,6 @@ import "../globals.css"
 export default function Page() {
     return (
       <main className='h-full w-full flex flex-col'>
-        <nav className='w-full h-24 flex-auto'>
-
-        </nav>
         <div className='flex h-full'>
             <div className='flex h-full w-1/2 justify-center items-center border-white border '>
               <div className="w-2/3 h-2/3 border">
@@ -22,7 +19,6 @@ export default function Page() {
               </div>
             </div>
         </div>
-        
       </main>
     )
 }
