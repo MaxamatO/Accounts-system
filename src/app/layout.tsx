@@ -14,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className='h-screen w-full m-0'>
+      <body className={`${inter.className} bg-gradient-radial m-0 h-screen w-full`}>{children}</body>
     </html>
   )
 }

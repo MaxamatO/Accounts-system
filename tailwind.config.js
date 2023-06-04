@@ -8,10 +8,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-radial': 'radial-gradient(circle, rgba(41,39,39,1) 0%, rgba(23,23,23,1) 10%, rgba(0,0,0,1) 100%);',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      dropShadow: {
+        'xl': "0px 10px 25px rgb(255 255 255 / 0.25)"
+      }
     },
   },
   plugins: [],
