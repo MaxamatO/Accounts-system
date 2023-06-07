@@ -12,3 +12,7 @@ export async function GET(){
     const users: User[] = await prisma.user.findMany();
     return NextResponse.json(users);
 }
+
+export async function POST(user: User) {
+    
+}

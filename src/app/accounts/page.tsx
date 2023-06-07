@@ -7,9 +7,8 @@ export default function Page() {
     const [users, setUsers] = useState<User[]>([]);
 
     
-    useEffect(() => {
+     useEffect(() => {
         fetchUsers().then(res => setUsers(res));
-        console.log(users);
         
     }, []);
     
@@ -17,7 +16,9 @@ export default function Page() {
     return (
         <>
         {users.map((user) => {
-            <div>{user.email}</div>
+            return (
+                <div className="w-full h-full">{user.email}</div>
+            )
         })}
         </>
     )
