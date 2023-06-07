@@ -1,13 +1,6 @@
-type User = {
-    id: number,
+export type User = {
     email: string,
     password: string,
-    role: Roles,
-    verified: boolean
-
-}
-
-
-interface Roles {
-    ADMIN, USER
+    role: string,
+    verified: boolean?
 }
