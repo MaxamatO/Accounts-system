@@ -1,19 +1,25 @@
 "use client"
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import "../globals.css"
 import { User } from "../../../types"
-
-
+import { useRouter } from "next/navigation"
+import Register from "../components/Register"
 
 export default function Page() {
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
+
   async function handleSubmit(event: any) {
     event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    const rePassword = event.target.rePassword.value;
-    console.log(email, password, rePassword);
-    
+    await fetch('http://localhost:3000/api/register', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        email, password, rePassword
+      })});
+      
   }
 
     return (
@@ -36,24 +42,11 @@ export default function Page() {
             </div>
             <div className='relative flex justify-center items-center h-full w-1/2'> 
               <div className="w-2/3 h-2/3">
-                <form onSubmit={handleSubmit} className="w-full h-full flex flex-col gap-16 place-content-center items-center">
-                  <div className="flex flex-col w-60 gap-1">
-                    <label htmlFor="" >email</label>
-                    <input type="text" name="email" className="w-60 h-10 text-black" required />
-                  </div>
-                  <div className="flex flex-col w-60 gap-16">
-                    <div className="flex  flex-col gap-1">
-                      <label htmlFor="">password</label>
-                      <input type="password" name="password" className="w-60 h-10 text-black" required />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <label htmlFor="">repeat password</label>
-                      <input type="password" name="rePassword" className="w-60 h-10 text-black" required />
-                    </div>
-                      
-                  </div>
-                  <button type="submit" className="w-32  h-10 bg-gray-700">Register</button>
-                </form>
+                <Register 
+                  handleSubmit={handleSubmit}
+                  setEmail={(e) => setEmail(e.target.value)} 
+                  setPassword={(e) => setPassword(e.target.value)} 
+                  setRePassword={(e) => setRePassword(e.target.value)}/>
               </div>
             </div>
         </div>
