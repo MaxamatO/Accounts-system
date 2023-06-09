@@ -1,9 +1,12 @@
 "use server"
 import { PrismaClient } from "@prisma/client";
 import { User } from "../../../../types";
+import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
+
+
 
 function okCredentials(user: User, rePassword: string): boolean {
     if(user.password === "" || user.email === "") return false;
@@ -12,8 +15,19 @@ function okCredentials(user: User, rePassword: string): boolean {
     return true;
 }
 
-export async function POST(user: User, rePassword: string) {
-    if(!okCredentials(user, rePassword)) return new Error("Credentials invalid");
-    const createUser = await prisma.user.create({data: user});
-    return NextResponse.json(createUser);
-}
+export async function POST(req: Request, res: NextApiResponse) {
+    const body = await req.json();
+    const {email, password, rePassword} = body;
+    
+    const user: User = {
+        email: email??"",
+        password: password??"",
+        verified: false,
+        role: "User"
+    };
+    // if(!okCredentials(user, rePassword)) return new Response("Credentials invalid");
+    // console.log(okCredentials(user, rePassword));
+    
+    const createUser = await prisma.user.create({data: user},);
+    return NextResponse.json({message: "User created", createUser}) 
+}   
