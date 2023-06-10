@@ -1,8 +1,7 @@
-import Link from "next/link"
 import React, { FunctionComponent } from "react"
 
 interface Props {
-    handleSubmit: (e: any) => void,
+    handleRegisterSubmit: (e: any) => void,
     setEmail: (e: any) => void,
     setPassword: (e: any) => void,
     setRePassword: (e: any) => void,
@@ -10,9 +9,9 @@ interface Props {
 }
 
 
-const Register: FunctionComponent<Props> = ({handleSubmit, setEmail, setPassword, setRePassword}) => {
+const Register: FunctionComponent<Props> = ({handleRegisterSubmit, setEmail, setPassword, setRePassword}) => {
     return (
-        <form  method="POST" onSubmit={handleSubmit} className="w-full h-full flex flex-col gap-16 place-content-center items-center">
+        <form  method="POST" onSubmit={handleRegisterSubmit} className="w-full h-full flex flex-col gap-16 place-content-center items-center">
             <div className="flex flex-col w-60 gap-1">
                 <label htmlFor="" >email</label>
                 <input type="text" onChange={setEmail} name="email" className="w-60 h-10 text-black" required />

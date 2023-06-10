@@ -15,7 +15,7 @@ function okCredentials(user: User, rePassword: string): boolean {
     return true;
 }
 
-export async function POST(req: Request, res: NextApiResponse) {
+export async function POST(req: Request) {
     const body = await req.json();
     const {email, password, rePassword} = body;
     
@@ -27,6 +27,7 @@ export async function POST(req: Request, res: NextApiResponse) {
     };
     // if(!okCredentials(user, rePassword)) return new Response("Credentials invalid");
     // console.log(okCredentials(user, rePassword));
+    console.log(email, password);
     
     const createUser = await prisma.user.create({data: user},);
     return NextResponse.json({message: "User created", createUser}) 

@@ -5,14 +5,12 @@ import { User } from "../../../types";
 
 export default function Page() {
     const [users, setUsers] = useState<User[]>([]);
-
     
      useEffect(() => {
         fetchUsers().then(res => setUsers(res));
         
     }, []);
     
-
     return (
         <div className="mx-auto max-w-7xl">
         <div className="mt-8 flow-root">
@@ -21,6 +19,12 @@ export default function Page() {
                 <table className="min-w-full divide-y divide-gray-700">
                 <thead>
                     <tr>
+                    <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                    >
+                        Id
+                    </th>
                     <th
                         scope="col"
                         className="px-3 py-3.5 text-left text-sm font-semibold text-white"
