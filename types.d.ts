@@ -4,3 +4,8 @@ export type User = {
     role: string,
     verified: boolean?
 }
+
+export type ErrorMessage = {
+    errorType: string,
+    ok: boolean
+}
