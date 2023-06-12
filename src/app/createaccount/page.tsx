@@ -8,6 +8,8 @@ import Login from "../components/Login"
 
 export default function Page() {
 
+  const router = useRouter();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
@@ -15,14 +17,25 @@ export default function Page() {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPass, setLoginPass] = useState('');
 
+  const [loginError, setLoginError] = useState('');
+  const [registerError, setRegisterError] = useState('');
+
   async function handleRegisterSubmit(event: any) {
     event.preventDefault();
-    await fetch('http://localhost:3000/api/register', {
+    const response = await fetch('http://localhost:3000/api/register', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         email, password, rePassword
-      })});
+      })})
+      if (response.ok) {
+        router.push("http://localhost:3000/accounts");
+        return;
+      }
+      const resBody = await response.json();
+      console.log(resBody);
+      setRegisterError(resBody.statusText);
+      
   }
 
   async function handleLoginSubmit(event: any) {
@@ -33,6 +46,8 @@ export default function Page() {
       body: JSON.stringify({
         email:loginEmail, password:loginPass
       })});
+    router.push("http://localhost:3000/accounts");
+
   }
 
     return (
