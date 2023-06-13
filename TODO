@@ -1,0 +1,6 @@
+MAKE THIS RESPONSIVE ALREADY 
+Hash the password ----- learn some cryptography, play with it
+Create endpoint for login
+Validate login
+Make some auth (only logged in users can watch /accounts)
+Make ADMIN role able to delete users from /accounts and db by UI or calling deleteuser endpoint with email
