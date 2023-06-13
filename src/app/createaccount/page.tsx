@@ -5,6 +5,7 @@ import { User } from "../../../types"
 import { useRouter } from "next/navigation"
 import Register from "../components/Register"
 import Login from "../components/Login"
+import { ErrorTypes } from "../../../utils/ErrorTypes"
 
 export default function Page() {
 
@@ -18,7 +19,7 @@ export default function Page() {
   const [loginPass, setLoginPass] = useState('');
 
   const [loginError, setLoginError] = useState('');
-  const [registerError, setRegisterError] = useState('');
+  const [registerError, setRegisterError] = useState(ErrorTypes.NONE);
 
   async function handleRegisterSubmit(event: any) {
     event.preventDefault();
@@ -34,7 +35,7 @@ export default function Page() {
       }
       const resBody = await response.json();
       console.log(resBody);
-      setRegisterError(resBody.statusText);
+      setRegisterError(resBody.errorType);
       
   }
 
@@ -65,6 +66,7 @@ export default function Page() {
             <div className='relative flex justify-center items-center h-full w-1/2'> 
               <div className="w-2/3 h-2/3">
                 <Register 
+                  registerError = {registerError}
                   handleRegisterSubmit={handleRegisterSubmit}
                   setEmail={(e) => setEmail(e.target.value)} 
                   setPassword={(e) => setPassword(e.target.value)} 
