@@ -1,3 +1,5 @@
+import { ErrorTypes } from "./utils/ErrorTypes"
+
 export type User = {
     email: string,
     password: string,
@@ -6,6 +8,7 @@ export type User = {
 }
 
 export type ErrorMessage = {
-    errorType: string,
-    ok: boolean
+    errorType: ErrorTypes,
+    ok: boolean,
+    errorText: string
 }
