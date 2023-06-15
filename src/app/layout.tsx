@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import Providers from './components/Providers'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -17,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en" className='h-screen w-full m-0'>
       <body className={`${inter.className} bg-gradient-radial m-0 h-screen w-full flex flex-col`}>
-        <Navbar/>
-        {children}
+        <Providers>
+          <Navbar/>
+          {children}
+        </Providers>
         </body>
     </html>
   )
