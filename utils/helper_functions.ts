@@ -27,6 +27,19 @@ export async function okCredentials(user: User, rePassword: string): Promise<Err
     return {errorText: "None", ok: true, errorType: ErrorTypes.NONE};
 }
 
+export async function okCredentialsLogin(email: string, password: string): Promise<ErrorMessage> {
+    const exists = !!await prisma.user.findFirst({
+        where: {
+            email: email
+        }
+    });
+    const user = await prisma.user.findFirst({where: {email:email}});
+    const realPassword = user?.password;
+    if(password!==realPassword || !exists) return {errorText: "Password or email is not correct", errorType: ErrorTypes.WRONG_CREDS, ok: false};
+
+    return {errorText: "None", ok: true, errorType: ErrorTypes.NONE}; 
+}
+
 // Validate email using regex
 export function validateEmail(email: string) {
     return String(email)
