@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import {signIn} from "next-auth/react";
 
 interface Props {
     setLoginEmail: (e: any) => void;
@@ -8,7 +9,7 @@ interface Props {
 
 const Login: FunctionComponent<Props> = ({setLoginEmail, setLoginPass, handleLoginSubmit}) => {
     return (
-        <form onSubmit={handleLoginSubmit} className="w-full h-full flex flex-col gap-16 place-content-center items-center">
+        <form  className="w-full h-full flex flex-col gap-16 place-content-center items-center">
             <div className="flex flex-col w-60 gap-1">
             <label htmlFor="">email</label>
             <input type="text" onChange={setLoginEmail} className="w-60 h-10 text-black" required/>

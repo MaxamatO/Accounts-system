@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import Register from "../components/Register"
 import Login from "../components/Login"
 import { ErrorTypes } from "../../../utils/ErrorTypes"
+import { signIn } from "next-auth/react"
 
 export default function Page() {
 
@@ -56,21 +57,23 @@ export default function Page() {
         <div className='flex h-full'>
             <div className='flex h-full w-1/2 justify-center items-center border-r-2 border-gray-800'>
               <div className="w-2/3 h-2/3">
-                <Login
+                {/* <Login
                   setLoginEmail={(e) => setLoginEmail(e.target.value)}
                   setLoginPass={(e) => setLoginPass(e.target.value)}
                   handleLoginSubmit={handleLoginSubmit}
-                />
+                /> */}
+                <button onClick={() => signIn()}>Login</button>
               </div>
             </div>
             <div className='relative flex justify-center items-center h-full w-1/2'> 
               <div className="w-2/3 h-2/3">
-                <Register 
+                {/* <Register 
                   registerError = {registerError}
                   handleRegisterSubmit={handleRegisterSubmit}
                   setEmail={(e) => setEmail(e.target.value)} 
                   setPassword={(e) => setPassword(e.target.value)} 
-                  setRePassword={(e) => setRePassword(e.target.value)}/>
+                  setRePassword={(e) => setRePassword(e.target.value)}/> */}
+                  <button>Register</button>
               </div>
             </div>
         </div>
