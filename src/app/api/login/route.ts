@@ -1,9 +1,4 @@
-import { NextResponse } from "next/server";
-import { ErrorMessage } from "../../../../types";
-import { okCredentialsLogin } from "../../../../utils/helper_functions";
-import { HttpCodes } from "../../../../utils/HttpErrors";
 import prisma from "../../../../lib/prisma";
-import { use } from "react";
 
 interface RequestBody {
     email: string;
