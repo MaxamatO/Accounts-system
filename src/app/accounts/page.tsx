@@ -13,7 +13,7 @@ export default function Page() {
         fetchUsers().then(res => setUsers(res));
         
     }, []);
-    if(session && session.user.role === Roles.ADMIN){
+    if(session && session.user?.role === Roles.ADMIN){
         return (
             <div className="mx-auto max-w-7xl">
             <div className="mt-8 flow-root">
@@ -94,7 +94,6 @@ export default function Page() {
     return (
         <main className="w-full h-full flex justify-center items-center">
             <h1 className="text-4xl">Page is only visible for admins</h1>
-            <p>{session?.user.role} hi</p>
         </main>
     )
    
