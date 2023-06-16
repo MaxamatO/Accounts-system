@@ -1,6 +1,9 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { NextResponse } from "next/server";
+import { env } from "process";
+import { use } from "react";
+import { setEmitFlags } from "typescript";
 
 const handler = NextAuth({
   providers: [
@@ -40,7 +43,8 @@ const handler = NextAuth({
       }
     })
 ],
-pages: {signIn: "signIn"}
+pages: {signIn: "signIn"},
+secret: process.env.JWT_SECRET,
 })
 
 export {handler as GET, handler as POST};
