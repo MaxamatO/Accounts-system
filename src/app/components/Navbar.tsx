@@ -11,6 +11,7 @@ export default function Navbar() {
                     <div className="flex w-full justify-start gap-10">
                         <Link href="/">Home</Link>
                         <Link href="https://github.com/MaxamatO" target="_blank">Git Hub</Link>
+                        <Link href="http://localhost:3000/accounts">Accounts</Link>
                     </div>
                     {session && session.user ? 
                     <div className="flex w-full justify-end gap-10">
@@ -22,9 +23,7 @@ export default function Navbar() {
                         <button onClick={() => signIn()}>Sign in</button>
                         <Link href="http://localhost:3000/api/auth/signUp">Sign up</Link>
                     </div>
-                        
                 }
-                    
                 </div>
             </nav>
     )
