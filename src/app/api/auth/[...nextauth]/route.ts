@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { env } from "process";
 import { use } from "react";
 import { setEmitFlags } from "typescript";
+import { User } from "../../../../../types";
 
 const handler = NextAuth({
   providers: [
@@ -45,6 +46,20 @@ const handler = NextAuth({
 ],
 pages: {signIn: "signIn"},
 secret: process.env.JWT_SECRET,
+callbacks: {
+  async jwt({token, user}) {
+    if(user) {
+      token.user = user;
+    }
+    return token;
+  },
+
+  async session({session, token}) {
+    session.user = token.user as User;
+    return session;
+  }
+
+}
 })
 
 export {handler as GET, handler as POST};
