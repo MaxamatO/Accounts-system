@@ -1,11 +1,10 @@
 "use client"
-import router from "next/router";
-import React, { FunctionComponent, useState } from "react"
+import { useRouter } from "next/navigation";
+import React, { useState } from "react"
 import { ErrorTypes } from "../../../../../utils/ErrorTypes";
 
-
-
 const Register = () => {
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
@@ -35,6 +34,9 @@ const Register = () => {
                 <input type="text" onChange={(e) => setEmail(e.target.value)} name="email" className="w-60 h-10 text-black" required />
                 {registerError === ErrorTypes.INVALID_EMAIL &&  
                 <p className="text-xs text-red-600">Invalid email</p>
+                }
+                {registerError === ErrorTypes.EMAIL_EXISTS && 
+                <p className="text-xs text-red-600">Email exists</p>
                 }
             </div>
             <div className="flex flex-col w-60 gap-16">
