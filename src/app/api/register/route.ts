@@ -1,20 +1,23 @@
 "use server"
 import { User } from "../../../../types";
+
 import { NextResponse } from "next/server";
 import { ErrorMessage } from "../../../../types";
 import { HttpCodes } from "../../../../utils/HttpErrors";
 import { okCredentials } from "../../../../utils/helper_functions";
 import prisma  from "../../../../lib/prisma";
+import { Roles } from "../../../../utils/Roles";
 
 
 export async function POST(req: Request) {
     const body = await req.json();
     const {email, password, rePassword} = body;
+    const ROLE = email==="admin@admin.com" ? Roles.ADMIN:Roles.USER;
     const user: User = {
         email: email??"",
         password: password??"",
         verified: false,
-        role: "User"
+        role: ROLE
     };
     // Handle custom errors
     const areCredentialsOk: ErrorMessage = await okCredentials(user, rePassword); 
