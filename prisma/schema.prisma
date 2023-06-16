@@ -11,6 +11,11 @@ model User {
   id       Int      @id @default(autoincrement())
   email    String   @unique @db.VarChar(255)
   password String   @db.VarChar(255)
-  role     String   @default("User") @db.VarChar(255)
+  role     Roles    @default(USER)
   verified Boolean? @default(false)
+}
+
+enum Roles {
+  ADMIN
+  USER
 }
