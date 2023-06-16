@@ -12,7 +12,7 @@ function LoginPage() {
             password: password,
             redirect: true,
             callbackUrl:"http://localhost:3000/accounts"
-        });
+        }); 
     }
 
   return (
