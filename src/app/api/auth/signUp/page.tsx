@@ -23,7 +23,6 @@ const Register = () => {
             return;
           }
           const resBody = await response.json();
-          console.log(resBody);
           setRegisterError(resBody.errorType);
           
       }

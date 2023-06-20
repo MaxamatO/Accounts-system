@@ -9,6 +9,7 @@ import { HttpCodes } from "../../../../utils/HttpErrors";
 
 export async function GET(){
     const session = await getServerSession(authOptions);
+    // Check for role. API only accessible by ADMIN
     if(session && session.user.role === Roles.ADMIN) {
         const users: User[] = await prisma.user.findMany();
         return NextResponse.json(users);
