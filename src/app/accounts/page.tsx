@@ -4,60 +4,35 @@ import { fetchUsers } from "../../../utils/helper_functions"
 import { User } from "../../../types";
 import { useSession } from "next-auth/react";
 import { Roles } from "../../../utils/Roles";
+import UsersTable from "../components/UsersTable";
 
 export default function Page() {
     const {data: session} = useSession();
     const [users, setUsers] = useState<User[]>([]);
-    
+
      useEffect(() => {
         fetchUsers().then(res => setUsers(res));
-        
     }, []);
+
+    const handleDelete = async (email: string) => {
+        console.log(email);
+        const response = await fetch(`http://localhost:3000/api/deleteaccount?id=${email}`, {
+          method: "DELETE"
+        })
+        fetchUsers().then(res => setUsers(res));
+        
+    }
+    
     if(session && session.user?.role === Roles.ADMIN){
         return (
             <div className="mx-auto max-w-7xl">
             <div className="mt-8 flow-root">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <table className="min-w-full divide-y divide-gray-700">
-                    <thead>
-                        <tr>
-                        <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                        >
-                            Id
-                        </th>
-                        <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                        >
-                            Email
-                        </th>
-                        <th
-                            scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                        >
-                            Role
-                        </th>
-                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                            <span className="sr-only">Edit</span>
-                        </th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-800">
-                        {users.map((person) => (
-                        <tr key={person.email}>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {person.email}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-                            {person.role}
-                            </td>
-                        </tr>
-                        ))}
-                    </tbody>
-                    </table>
+                    <UsersTable
+                    users={users}
+                    handleDelete={handleDelete}
+                    />
                     {/* TODO: Pagination */}
                     <nav
                     className="flex items-center justify-between gap-4 py-3"
