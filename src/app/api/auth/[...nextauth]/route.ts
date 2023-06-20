@@ -1,12 +1,8 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { NextResponse } from "next/server";
-import { env } from "process";
-import { use } from "react";
-import { setEmitFlags } from "typescript";
 import { User } from "../../../../../types";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -60,6 +56,8 @@ callbacks: {
   }
 
 }
-})
+}
+
+const handler = NextAuth(authOptions);
 
 export {handler as GET, handler as POST};
