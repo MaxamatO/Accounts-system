@@ -7,6 +7,7 @@ import { HttpCodes } from "../../../../utils/HttpErrors";
 import { okCredentials } from "../../../../utils/helper_functions";
 import prisma  from "../../../../lib/prisma";
 import { Roles } from "../../../../utils/Roles";
+import { hashPass } from "../../../../utils/hashing";
 
 
 export async function POST(req: Request) {
@@ -28,7 +29,9 @@ export async function POST(req: Request) {
     } 
     // Create the user, when okCredentials is true
     if(areCredentialsOk.ok === true){
-        console.log(email, password);
+        user.password = await hashPass(password);
+        console.log(user.password);
+        
         const createdUser = await prisma.user.create({data: user},);
         return NextResponse.json(errorMessage); 
     }; 

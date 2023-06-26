@@ -15,7 +15,7 @@ export default function Navbar() {
                         <Link href="/accounts">Accounts</Link>
                     </div>
                     {session && session.user ? 
-                    <div className="absolute flex flex-col right-0 sm:justify-end sm:gap-10 sm:flex-row">
+                    <div className="absolute duration-75 flex gap-10 left-0 pl-10 top-24 sm:opacity-100 sm:justify-end sm:w-full sm:relative sm:top-0 sm:gap-10 sm:flex-row">
                         <p>{session.user.email}</p>
                         <button onClick={() => signOut()}>Sign out</button>
                     </div>

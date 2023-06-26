@@ -1,4 +1,5 @@
 import prisma from "../../../../lib/prisma";
+import { isSame } from "../../../../utils/hashing";
 
 interface RequestBody {
     email: string;
@@ -14,8 +15,8 @@ export async function POST(req: Request) {
     //     errorText: areCredentialsOk.errorText
     // }
     const user = await prisma.user.findFirst({where: {email: body.email}})
-
-    if(user && user.password === body.password) {
+    const compare = await isSame(body.password, user!!.password);
+    if(user && compare) {
         const {password, ...userWithoutPass} = user; 
         return new Response(JSON.stringify(userWithoutPass));
     }

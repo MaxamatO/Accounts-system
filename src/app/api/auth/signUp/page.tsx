@@ -9,7 +9,6 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
     const [registerError, setRegisterError] = useState(ErrorTypes.NONE);
-
     async function handleRegisterSubmit(event: any) {
         event.preventDefault();
         const response = await fetch('http://localhost:3000/api/register', {
