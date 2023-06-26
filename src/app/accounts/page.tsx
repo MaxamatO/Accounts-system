@@ -14,6 +14,7 @@ export default function Page() {
         fetchUsers().then(res => setUsers(res));
     }, []);
 
+    // Delete user based on email parameter --- not the best approach, should use dynamic routs with ID of user but dont know how to grab it from prisma
     const handleDelete = async (email: string) => {
         console.log(email);
         const response = await fetch(`http://localhost:3000/api/deleteaccount?id=${email}`, {

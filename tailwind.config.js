@@ -16,6 +16,12 @@ module.exports = {
         'xl': "0px 10px 25px rgb(255 255 255 / 0.25)"
       }
     },
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+    }
   },
   plugins: [],
 }

@@ -27,6 +27,8 @@ export async function DELETE(req: Request) {
     const email = searchParams.get('id');
     console.log(email);
     
+    
+    
     if(!email) return NextResponse.json({
         message: "No email was provided"
     },
@@ -34,6 +36,16 @@ export async function DELETE(req: Request) {
         status: HttpCodes.bad_request
     }
     )
+
+    if(email === session.user.email) {
+        return NextResponse.json({
+            message: "You can't delete yourself"
+        },
+        {
+            status: HttpCodes.bad_request
+        })
+    }
+
     const exists = !!await prisma.user.findUnique({where: {email: email}});
     console.log(exists);
     

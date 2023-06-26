@@ -16,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='h-screen w-full m-0'>
-      <body className={`${inter.className} bg-gradient-radial m-0 h-screen w-full flex flex-col`}>
+    <html lang="en" className='h-full w-full m-0 p-0'>
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script noModule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      <body className={`${inter.className} bg-gradient-radial m-0 h-full w-full flex flex-col`}>
         <Providers>
           <Navbar/>
           {children}
